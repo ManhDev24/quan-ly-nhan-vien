@@ -1,12 +1,11 @@
-// function formatCash(str) {
-//   return str
-//     .split("")
-//     .reverse()
-//     .reduce((prev, next, index) => {
-//       return (index % 3 ? next : next + ",") + prev;
-//     });
-// }
-// formatCash(nv.tongLuong().toString())
+function formatCash(str) {
+  return str
+    .split("")
+    .reverse()
+    .reduce((prev, next, index) => {
+      return (index % 3 ? next : next + ".") + prev;
+    });
+}
 
 function layThongTinNV() {
   var nv = new employee();
@@ -23,7 +22,7 @@ function layThongTinNV() {
 
 function render(array) {
   var content = "";
-  array.reverse().forEach(function (nv) {
+  array.forEach(function (nv) {
     var list = `
       <tr>
         <td>${nv.tk}</td>
@@ -31,7 +30,7 @@ function render(array) {
         <td>${nv.email}</td>
         <td>${nv.ngay}</td>
         <td>${nv.chucVu}</td>
-        <td>${nv.tongLuong()}</td>
+        <td>${formatCash(nv.tongLuong().toString())}</td>
         <td>${nv.xepLoai()}</td>
         <td>
         <button  onclick="checkNV('${

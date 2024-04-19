@@ -3,7 +3,7 @@ var data = localStorage.getItem("listOfEmployee");
 
 if (data != null) {
   var dataRaw = JSON.parse(data);
-  for (let index = 0; index < dataRaw.length; index++) {
+  for (let index = dataRaw.length - 1; index >= 0; index--) {
     var nv = new employee(
       dataRaw[index].tk,
       dataRaw[index].hoTen,
@@ -41,13 +41,21 @@ function addNV() {
   var isLuongValid =
     validateIsNull("#tbLuongCB", nv.luong) &&
     validateLuongCoBan("#tbLuongCB", nv.luong);
+  var isRoleValid =
+    validateRole("#tbChucVu", nv.chucVu) &&
+    validateIsNull("#tbChucVu", nv.chucVu);
+  var isHourValid =
+    validateIsNull("#tbGiolam", nv.gioLam) &&
+    validateTotalHourInMonth("#tbGiolam", nv.gioLam);
   var check =
     isTKNVValid &&
     isTenValid &&
     isEmailValid &&
     isMatKhauValid &&
     isDateValid &&
-    isLuongValid;
+    isLuongValid &&
+    isRoleValid &&
+    isHourValid;
 
   if (!check) {
     return;
@@ -102,11 +110,50 @@ function checkNV(id) {
 }
 
 function updateNV() {
-  var sv = layThongTinNV();
+  var nv = layThongTinNV();
+  var isTKNVValid =
+    validateIsNull("#tbTKNV", nv.tk) && validateSize("#tbTKNV", nv.tk, 4, 6);
+
+  var isTenValid =
+    validateIsNull("#tbTen", nv.hoTen) &&
+    validateEmployeeName("#tbTen", nv.hoTen);
+
+  var isEmailValid =
+    validateIsNull("#tbEmail", nv.email) && validateEmail("#tbEmail", nv.email);
+
+  var isMatKhauValid =
+    validateIsNull("#tbMatKhau", nv.mk) &&
+    validateSize("#tbMatKhau", nv.mk, 6, 10) &&
+    validatePassword("#tbMatKhau", nv.mk);
+
+  var isDateValid =
+    validateIsNull("#tbNgay", nv.ngay) && validateDate("#tbNgay", nv.ngay);
+  var isLuongValid =
+    validateIsNull("#tbLuongCB", nv.luong) &&
+    validateLuongCoBan("#tbLuongCB", nv.luong);
+  var isRoleValid =
+    validateRole("#tbChucVu", nv.chucVu) &&
+    validateIsNull("#tbChucVu", nv.chucVu);
+  var isHourValid =
+    validateIsNull("#tbGiolam", nv.gioLam) &&
+    validateTotalHourInMonth("#tbGiolam", nv.gioLam);
+  var check =
+    isTKNVValid &&
+    isTenValid &&
+    isEmailValid &&
+    isMatKhauValid &&
+    isDateValid &&
+    isLuongValid &&
+    isRoleValid &&
+    isHourValid;
+
+  if (!check) {
+    return;
+  }
   var index = listOfEmployee.findIndex(function (item) {
-    return item.tk == sv.tk;
+    return item.tk == nv.tk;
   });
-  listOfEmployee[index] = sv;
+  listOfEmployee[index] = nv;
   var data = JSON.stringify(listOfEmployee);
   localStorage.setItem("listOfEmployee", data);
   render(listOfEmployee);
