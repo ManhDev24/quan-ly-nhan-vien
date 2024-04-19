@@ -29,15 +29,3 @@ function employee(_tk, _hoTen, _email, _mk, _ngay, luong, chucVu, _gioLam) {
   };
 }
 
-function layThongTinNV() {
-  var nv = new employee();
-  nv.tk = document.getElementById("tknv").value;
-  nv.hoTen = document.getElementById("name").value;
-  nv.email = document.getElementById("email").value;
-  nv.mk = document.getElementById("password").value;
-  nv.ngay = document.getElementById("datepicker").value;
-  nv.luong = document.getElementById("luongCB").value;
-  nv.chucVu = document.getElementById("chucvu").value;
-  nv.gioLam = document.getElementById("gioLam").value;
-  return nv;
-}

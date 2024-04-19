@@ -1,5 +1,4 @@
 var listOfEmployee = [];
-
 var data = localStorage.getItem("listOfEmployee");
 
 if (data != null) {
@@ -21,6 +20,38 @@ if (data != null) {
 }
 function addNV() {
   var nv = layThongTinNV();
+
+  var isTKNVValid =
+    validateIsNull("#tbTKNV", nv.tk) && validateSize("#tbTKNV", nv.tk, 4, 6);
+
+  var isTenValid =
+    validateIsNull("#tbTen", nv.hoTen) &&
+    validateEmployeeName("#tbTen", nv.hoTen);
+
+  var isEmailValid =
+    validateIsNull("#tbEmail", nv.email) && validateEmail("#tbEmail", nv.email);
+
+  var isMatKhauValid =
+    validateIsNull("#tbMatKhau", nv.mk) &&
+    validateSize("#tbMatKhau", nv.mk, 6, 10) &&
+    validatePassword("#tbMatKhau", nv.mk);
+
+  var isDateValid =
+    validateIsNull("#tbNgay", nv.ngay) && validateDate("#tbNgay", nv.ngay);
+  var isLuongValid =
+    validateIsNull("#tbLuongCB", nv.luong) &&
+    validateLuongCoBan("#tbLuongCB", nv.luong);
+  var check =
+    isTKNVValid &&
+    isTenValid &&
+    isEmailValid &&
+    isMatKhauValid &&
+    isDateValid &&
+    isLuongValid;
+
+  if (!check) {
+    return;
+  }
   listOfEmployee.push(nv);
   var data = JSON.stringify(listOfEmployee);
   localStorage.setItem("listOfEmployee", data);
@@ -86,6 +117,5 @@ function search() {
   let searchResult = listOfEmployee.filter(function (item) {
     return item.xepLoai().toLowerCase().includes(valueSearch.toLowerCase());
   });
-  console.log(searchResult);
   render(searchResult);
 }
