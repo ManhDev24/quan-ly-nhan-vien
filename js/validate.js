@@ -101,3 +101,37 @@ function validateLuongCoBan(id, value) {
   document.querySelector(id).style.display = "inline-block";
   return false;
 }
+
+function validateRole(id, value) {
+  if (value == "Sếp") {
+    document.querySelector(id).innerHTML = ``;
+    document.querySelector(id).style.display = "none";
+    return true;
+  }
+  if (value == "Trưởng phòng") {
+    document.querySelector(id).innerHTML = ``;
+    document.querySelector(id).style.display = "none";
+    return true;
+  }
+  if (value == "Nhân viên") {
+    document.querySelector(id).innerHTML = ``;
+    document.querySelector(id).style.display = "none";
+    return true;
+  }
+  document.querySelector(id).innerHTML = `chức vụ sai`;
+  document.querySelector(id).style.display = "inline-block";
+  return false;
+}
+
+function validateTotalHourInMonth(id, value) {
+  if (+value >= 80 && +value <= 200) {
+    document.querySelector(id).innerHTML = ``;
+    document.querySelector(id).style.display = "none";
+    return true;
+  }
+  document.querySelector(
+    id
+  ).innerHTML = `Giờ làm trong tháng phải trong [80 - 200]`;
+  document.querySelector(id).style.display = "inline-block";
+  return false;
+}
