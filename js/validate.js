@@ -113,7 +113,7 @@ function validateRole(id, value) {
     document.querySelector(id).style.display = "none";
     return true;
   }
-  if (value == "Nhân viên") {
+  if (value == "Nhân viên") {
     document.querySelector(id).innerHTML = ``;
     document.querySelector(id).style.display = "none";
     return true;
