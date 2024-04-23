@@ -23,30 +23,40 @@ function addNV() {
 
   var isTKNVValid =
     validateIsNull("#tbTKNV", nv.tk) && validateSize("#tbTKNV", nv.tk, 4, 6);
+  console.log("isTKNVValid: ", isTKNVValid);
 
   var isTenValid =
     validateIsNull("#tbTen", nv.hoTen) &&
     validateEmployeeName("#tbTen", nv.hoTen);
+  console.log("isTenValid: ", isTenValid);
 
   var isEmailValid =
     validateIsNull("#tbEmail", nv.email) && validateEmail("#tbEmail", nv.email);
+  console.log("isEmailValid: ", isEmailValid);
 
   var isMatKhauValid =
     validateIsNull("#tbMatKhau", nv.mk) &&
     validateSize("#tbMatKhau", nv.mk, 6, 10) &&
     validatePassword("#tbMatKhau", nv.mk);
+  console.log("isMatKhauValid: ", isMatKhauValid);
 
   var isDateValid =
     validateIsNull("#tbNgay", nv.ngay) && validateDate("#tbNgay", nv.ngay);
+  console.log("isDateValid: ", isDateValid);
   var isLuongValid =
     validateIsNull("#tbLuongCB", nv.luong) &&
     validateLuongCoBan("#tbLuongCB", nv.luong);
+  console.log("isLuongValid: ", isLuongValid);
   var isRoleValid =
     validateRole("#tbChucVu", nv.chucVu) &&
     validateIsNull("#tbChucVu", nv.chucVu);
+  console.log("validateRole: ", validateRole("#tbChucVu", nv.chucVu));
+  console.log("validateIsNull: ", validateIsNull("#tbChucVu", nv.chucVu));
+  console.log("isRoleValid: ", isRoleValid);
   var isHourValid =
     validateIsNull("#tbGiolam", nv.gioLam) &&
     validateTotalHourInMonth("#tbGiolam", nv.gioLam);
+  console.log("isHourValid: ", isHourValid);
   var check =
     isTKNVValid &&
     isTenValid &&
@@ -57,6 +67,7 @@ function addNV() {
     isRoleValid &&
     isHourValid;
 
+  console.log("check: ", check);
   if (!check) {
     return;
   }
